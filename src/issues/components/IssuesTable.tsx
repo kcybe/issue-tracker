@@ -34,6 +34,11 @@ createData(2, "Issue Number Two", "This is a description of issue number two", "
 createData(3, "Issue Number Three", "This is a description of issue number three", "in progress", "low", "Bobby", 1703020928),
 createData(4, "Issue Number Four", "This is a description of issue number four", "todo", "low", "User", 1703020928),
 createData(5, "Issue Number Five", "This is a description of issue number five", "todo", "low", "Rick", 1703020928),
+createData(6, "Issue Number Five", "This is a description of issue number five", "todo", "low", "Rick", 1703020928),
+createData(7, "Issue Number Five", "This is a description of issue number five", "todo", "low", "Rick", 1703020928),
+createData(8, "Issue Number Five", "This is a description of issue number five", "todo", "low", "Rick", 1703020928),
+createData(9, "Issue Number Five", "This is a description of issue number five", "todo", "low", "Rick", 1703020928),
+createData(10, "Issue Number Five", "This is a description of issue number five", "todo", "low", "Rick", 1703020928),
 ];
 
 function getData(dataType: string, value: string) {
