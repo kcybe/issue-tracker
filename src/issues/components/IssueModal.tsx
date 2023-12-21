@@ -38,18 +38,27 @@ export default function IssueModal () {
               <Stack spacing={2}>
                 <FormControl>
                   <FormLabel>Title</FormLabel>
-                  <Input autoFocus required />
+                  <Input placeholder='Title' autoFocus required />
                 </FormControl>
                 <FormControl>
                   <FormLabel>Description</FormLabel>
-                  <Input required />
+                  <Input placeholder='Description' required />
                 </FormControl>
                 <FormControl>
                 <FormLabel>Priority</FormLabel>
-                  <Select defaultValue="Medium">
+                  <Select>
                     <Option value="low">Low</Option>
                     <Option value="medium">Medium</Option>
                     <Option value="high">High</Option>
+                  </Select>
+                </FormControl>
+                <FormControl>
+                <FormLabel>Opened By</FormLabel>
+                  <Select>
+                    <Option value="noam">Noam</Option>
+                    <Option value="omer">Omer</Option>
+                    <Option value="ofek">Ofek</Option>
+                    <Option value="ron">Ron</Option>
                   </Select>
                 </FormControl>
                 <Button type="submit">Submit</Button>

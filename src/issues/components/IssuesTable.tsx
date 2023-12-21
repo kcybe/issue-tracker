@@ -1,7 +1,9 @@
 import Table from '@mui/joy/Table';
-import Sheet from '@mui/joy/Sheet'
+import Sheet from '@mui/joy/Sheet';
+import React from 'react';
 
-import { labels, priorities, statuses } from '../data/data'
+
+import { labels, priorities, statuses } from '../data/data';
 
 function createData(
     id: number,
@@ -41,19 +43,46 @@ createData(9, "Issue Number Five", "This is a description of issue number five",
 createData(10, "Issue Number Five", "This is a description of issue number five", "todo", "low", "Rick", 1703020928),
 ];
 
-function getData(dataType: string, value: string) {
+function getData(dataType: string, statusValue: string) {
     switch(dataType) {
         case 'status':
-            const statusTemp = statuses.find(
-                (value) => value.value
-            )
-            return statusTemp
+            const status = statuses.find((s) => s.value === statusValue);
+
+            if (status) {
+                console.log(status.icon)
+                return {
+                label: status.label,
+                icon: status.icon,
+                };
+            } else {
+                return {
+                label: "Unknown",
+                icon: null,
+                };
+            }
+            case 'priority':
+                const priority = priorities.find((s) => s.value === statusValue);
+    
+                if (priority) {
+                    console.log(priority.icon)
+                    return {
+                    label: priority.label,
+                    icon: priority.icon,
+                    };
+                } else {
+                    return {
+                    label: "Unknown",
+                    icon: null,
+                    };
+                }
+            
+
     } 
 }
 
 export default function IssuesTable() {
     return (
-        <Sheet>
+        <Sheet sx={{height: 500, overflow: 'auto'}}>
         <Table
         borderAxis="xBetween"
         color="neutral"
@@ -79,13 +108,39 @@ export default function IssuesTable() {
                 <td>{row.id}</td>
                 <td>{row.title}</td>
                 <td>{row.description}</td>
-                <td>{row.status}</td>
-                <td>{row.priority}</td>
+                {/* <td>{`${getData('status', row.status)?.icon} ${getData('status', row.status)?.label}`}</td> */}
+                <td>
+                    {React.createElement(
+                    getData('status', row.status)?.icon as React.ComponentType<React.SVGProps<SVGSVGElement>>,
+                    {
+                        style: { fontSize: '14' }, // Adjust the size as needed
+                    }
+                    )}{' '}
+                    {getData('status', row.status)?.label}
+                </td>
+                {/* <td>{row.status}</td> */}
+                <td>
+                    {React.createElement(
+                    getData('priority', row.priority)?.icon as React.ComponentType<React.SVGProps<SVGSVGElement>>,
+                    {
+                        style: { fontSize: '14' }, // Adjust the size as needed
+                    }
+                    )}{' '}
+                    {getData('priority', row.priority)?.label}
+                </td>
                 <td>{row.opened_by}</td>
                 <td>{timestampToDateTime(row.timestamp)}</td>
             </tr>
             ))}
         </tbody>
+        <tfoot>
+            <tr>
+              <td colSpan={7} style={{ textAlign: 'center' }}>
+                Total Open Issues NUMBER
+              </td>
+            </tr>
+          </tfoot>
+
         </Table>
         </Sheet>
     )
