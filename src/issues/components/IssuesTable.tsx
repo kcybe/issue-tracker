@@ -82,7 +82,11 @@ function getData(dataType: string, statusValue: string) {
 
 export default function IssuesTable() {
     return (
-        <Sheet sx={{height: 500, overflow: 'auto'}}>
+        <Sheet variant='outlined' sx={{
+            height: 500,
+            overflow: 'auto',
+            borderRadius: 'sm'
+        }}>
         <Table
         borderAxis="xBetween"
         color="neutral"
@@ -90,6 +94,7 @@ export default function IssuesTable() {
         stickyFooter
         stickyHeader
         variant="plain"
+        stripe="odd"
         >
             <thead>
             <tr>
@@ -108,7 +113,6 @@ export default function IssuesTable() {
                 <td>{row.id}</td>
                 <td>{row.title}</td>
                 <td>{row.description}</td>
-                {/* <td>{`${getData('status', row.status)?.icon} ${getData('status', row.status)?.label}`}</td> */}
                 <td>
                     {React.createElement(
                     getData('status', row.status)?.icon as React.ComponentType<React.SVGProps<SVGSVGElement>>,
@@ -118,7 +122,6 @@ export default function IssuesTable() {
                     )}{' '}
                     {getData('status', row.status)?.label}
                 </td>
-                {/* <td>{row.status}</td> */}
                 <td>
                     {React.createElement(
                     getData('priority', row.priority)?.icon as React.ComponentType<React.SVGProps<SVGSVGElement>>,
